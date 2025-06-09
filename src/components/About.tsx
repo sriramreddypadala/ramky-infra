@@ -85,8 +85,8 @@ const About = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80"
-                alt="Ramky Infra Development"
+                src="/src/assets/DJI_0178.JPG"
+                alt="Ramky Infra Development - Sustainable and Nature-Integrated Real Estate"
                 className="w-full h-full object-cover"
               />
             </div>

@@ -1,8 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -33,7 +32,7 @@ const Hero = () => {
   }, [heroImages.length]);
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden pt-16 md:pt-20">
       {/* Background Images */}
       {heroImages.map((image, index) => (
         <div
@@ -56,26 +55,14 @@ const Hero = () => {
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
           
-          {/* Logo Video Section */}
+          {/* Logo Section */}
           <div className="mb-8">
-            <div className="w-32 h-32 mx-auto mb-6 bg-luxury-gold/20 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-luxury-gold/30">
-              {/* Placeholder for logo video */}
-              <div className="text-center">
-                <div className="text-4xl font-playfair font-bold text-luxury-gold mb-1">RI</div>
-                <div className="text-xs text-luxury-cream">LOGO VIDEO</div>
-              </div>
-              {/* 
-              Future video implementation:
-              <video 
-                className="w-full h-full object-cover rounded-full" 
-                autoPlay 
-                muted 
-                loop
-                playsInline
-              >
-                <source src="/path-to-your-logo-video.mp4" type="video/mp4" />
-              </video>
-              */}
+            <div className="w-48 h-48 md:w-56 md:h-56 mx-auto mb-6 bg-luxury-gold/10 rounded-full flex items-center justify-center backdrop-blur-sm p-4">
+              <img 
+                src="/src/assets/ramky logo 2.png" 
+                alt="Ramky Infra & Developers" 
+                className="h-full w-auto object-contain"
+              />
             </div>
           </div>
 
@@ -86,40 +73,16 @@ const Hero = () => {
             {heroImages[currentSlide].subtitle}
           </p>
 
-          {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="flex flex-col sm:flex-row gap-4 p-4 bg-background/90 backdrop-blur-sm rounded-2xl shadow-2xl">
-              <div className="flex-1">
-                <Input
-                  placeholder="Search by location, property type..."
-                  className="border-0 bg-transparent text-lg placeholder:text-muted-foreground focus-visible:ring-luxury-gold"
-                />
-              </div>
+          {/* CTA Button */}
+          <div className="mt-8">
+            <Link to="/projects">
               <Button
                 size="lg"
-                className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy font-semibold px-8 sm:px-12"
+                className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy font-semibold px-12 py-6 text-lg"
               >
-                <Search className="h-5 w-5 mr-2" />
-                Search
+                View Our Projects
               </Button>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-luxury-cream hover:bg-luxury-champagne text-luxury-navy font-semibold px-8 py-3 text-lg"
-            >
-              View Projects
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-luxury-cream text-luxury-cream hover:bg-luxury-cream hover:text-luxury-navy font-semibold px-8 py-3 text-lg"
-            >
-              Know More
-            </Button>
+            </Link>
           </div>
         </div>
       </div>

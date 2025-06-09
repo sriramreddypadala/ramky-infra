@@ -17,15 +17,17 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-luxury-champagne/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-2 transition-all duration-300 hover:bg-background/80 hover:backdrop-blur-md hover:border-b hover:border-luxury-champagne/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/">
-              <h1 className="text-2xl md:text-3xl font-playfair font-bold luxury-text-gradient">
-                Ramky Infra
-              </h1>
+            <Link to="/" className="block h-12 md:h-14">
+              <img 
+                src="/src/assets/ramky logo 2.png" 
+                alt="Ramky Infra & Developers" 
+                className="h-full w-auto object-contain"
+              />
             </Link>
           </div>
 

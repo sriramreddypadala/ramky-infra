@@ -49,12 +49,6 @@ const Contact = () => {
     }
   ];
 
-  const lifestyleOfferings = [
-    'Free site visits for prospective buyers',
-    'Free resort membership',
-    'Free maintenance of plantation',
-    '100% eco-friendly ventures'
-  ];
 
   return (
     <section id="contact" className="py-20 bg-background">
@@ -71,22 +65,7 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Lifestyle Offerings */}
-        <div className="bg-luxury-cream/30 rounded-2xl p-8 mb-16">
-          <h3 className="text-2xl font-playfair font-semibold text-luxury-navy mb-6 text-center">
-            Lifestyle Offerings
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {lifestyleOfferings.map((offering, index) => (
-              <div key={index} className="text-center">
-                <div className="w-12 h-12 bg-luxury-gold/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <span className="text-luxury-gold text-xl">✓</span>
-                </div>
-                <p className="text-sm text-muted-foreground font-medium">{offering}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
