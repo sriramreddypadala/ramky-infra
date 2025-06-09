@@ -33,19 +33,19 @@ const Contact = () => {
 
   const contactInfo = [
     {
+      title: 'Office Location',
+      value: 'KVR Holdings, 2nd Floor',
+      description: 'Road #36, Jubilee Hills, Hyderabad'
+    },
+    {
       title: 'Phone',
-      value: '+1 (555) 123-4567',
-      description: 'Available 24/7 for luxury property inquiries'
+      value: '+91 99668 58799',
+      description: 'Available for project inquiries and site visits'
     },
     {
       title: 'Email',
-      value: 'contact@luxeestate.com',
-      description: 'Get detailed property information'
-    },
-    {
-      title: 'Office',
-      value: 'Beverly Hills, CA',
-      description: 'Visit our flagship showroom'
+      value: 'admin@ramkyinfra.com',
+      description: 'info@ramkyinfra.com for general inquiries'
     }
   ];
 
@@ -57,7 +57,7 @@ const Contact = () => {
             Contact Our Experts
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to discover your perfect luxury property? Our team is here to provide personalized assistance.
+            Ready to discover your perfect home in our gated communities? Our team is here to provide personalized assistance for Brindavanam and Dwaraka projects.
           </p>
         </div>
 

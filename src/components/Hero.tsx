@@ -10,18 +10,18 @@ const Hero = () => {
   const heroImages = [
     {
       url: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=2000&q=80',
-      title: 'Exceptional Luxury Homes',
-      subtitle: 'Discover properties that redefine elegant living'
+      title: 'Experience Exceptional Living with Ramky Infra',
+      subtitle: 'Eco-friendly gated communities with modern amenities and 24/7 security'
     },
     {
       url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80',
-      title: 'Architectural Excellence',
-      subtitle: 'Where design meets sophistication'
+      title: 'Brindavanam Goshala Community',
+      subtitle: 'Nature-focused lifestyle with dedicated cow shelter and green living'
     },
     {
       url: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?auto=format&fit=crop&w=2000&q=80',
-      title: 'Prime Locations',
-      subtitle: 'Exclusive properties in prestigious neighborhoods'
+      title: 'Sustainable Real Estate Development',
+      subtitle: 'Building environmentally conscious communities for future generations'
     }
   ];
 
@@ -55,6 +55,30 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full">
         <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+          
+          {/* Logo Video Section */}
+          <div className="mb-8">
+            <div className="w-32 h-32 mx-auto mb-6 bg-luxury-gold/20 rounded-full flex items-center justify-center backdrop-blur-sm border-2 border-luxury-gold/30">
+              {/* Placeholder for logo video */}
+              <div className="text-center">
+                <div className="text-4xl font-playfair font-bold text-luxury-gold mb-1">RI</div>
+                <div className="text-xs text-luxury-cream">LOGO VIDEO</div>
+              </div>
+              {/* 
+              Future video implementation:
+              <video 
+                className="w-full h-full object-cover rounded-full" 
+                autoPlay 
+                muted 
+                loop
+                playsInline
+              >
+                <source src="/path-to-your-logo-video.mp4" type="video/mp4" />
+              </video>
+              */}
+            </div>
+          </div>
+
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-luxury-cream mb-6 animate-fade-in">
             {heroImages[currentSlide].title}
           </h1>
@@ -87,14 +111,14 @@ const Hero = () => {
               size="lg"
               className="bg-luxury-cream hover:bg-luxury-champagne text-luxury-navy font-semibold px-8 py-3 text-lg"
             >
-              View Properties
+              View Projects
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-luxury-cream text-luxury-cream hover:bg-luxury-cream hover:text-luxury-navy font-semibold px-8 py-3 text-lg"
             >
-              Learn More
+              Know More
             </Button>
           </div>
         </div>

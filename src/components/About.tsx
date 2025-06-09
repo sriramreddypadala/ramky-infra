@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button';
 
 const About = () => {
   const stats = [
-    { value: '25+', label: 'Years Experience' },
-    { value: '$2.5B+', label: 'Properties Sold' },
-    { value: '500+', label: 'Happy Clients' },
-    { value: '50+', label: 'Prime Locations' }
+    { value: '15+', label: 'Years Experience' },
+    { value: '₹500Cr+', label: 'Projects Value' },
+    { value: '500+', label: 'Happy Families' },
+    { value: '2+', label: 'Major Projects' }
   ];
 
   return (
@@ -17,13 +17,13 @@ const About = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-4xl md:text-5xl font-playfair font-bold text-luxury-navy mb-6">
-                Excellence in Luxury Real Estate
+                Building Sustainable, Nature-Integrated Real Estate
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                For over two decades, Luxe Estate has been the premier destination for discerning clients seeking exceptional luxury properties worldwide.
+                Ramky Infra Developers is focused on creating eco-friendly, gated community developments that harmonize with nature while providing modern amenities and 24/7 security.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Our commitment to excellence, combined with unparalleled market knowledge and personalized service, has established us as the trusted partner for the world's most prestigious real estate transactions.
+                Our core philosophy centers on building sustainable, environmentally conscious communities. With projects like Brindavanam featuring dedicated Goshala and Dwaraka's luxury amenities, we create spaces where families can thrive in harmony with nature.
               </p>
             </div>
 
@@ -56,14 +56,14 @@ const About = () => {
             <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80"
-                alt="Luxury Estate"
+                alt="Ramky Infra Development"
                 className="w-full h-full object-cover"
               />
             </div>
             
             {/* Floating Element */}
             <div className="absolute -bottom-6 -left-6 bg-luxury-gold text-luxury-navy p-6 rounded-2xl shadow-xl">
-              <div className="text-2xl font-playfair font-bold">25+</div>
+              <div className="text-2xl font-playfair font-bold">15+</div>
               <div className="text-sm font-medium">Years of Excellence</div>
             </div>
           </div>
