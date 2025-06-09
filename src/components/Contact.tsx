@@ -40,7 +40,7 @@ const Contact = () => {
     {
       title: 'Phone',
       value: '+91 99668 58799',
-      description: 'Available for project inquiries and site visits'
+      description: 'Available on call & WhatsApp for project inquiries'
     },
     {
       title: 'Email',
@@ -49,16 +49,43 @@ const Contact = () => {
     }
   ];
 
+  const lifestyleOfferings = [
+    'Free site visits for prospective buyers',
+    'Free resort membership',
+    'Free maintenance of plantation',
+    '100% eco-friendly ventures'
+  ];
+
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-luxury-navy mb-6">
-            Contact Our Experts
+            Get in Touch with Us
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to discover your perfect home in our gated communities? Our team is here to provide personalized assistance for Brindavanam and Dwaraka projects.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
+            We Love to Hear from You! Let's Discuss Your Dream Home.
           </p>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            Explore Ramky Infra's open plots and gated villas offering luxury living in green surroundings. Whether you're interested in a custom-built home or ready-to-move villas, our team is here to help.
+          </p>
+        </div>
+
+        {/* Lifestyle Offerings */}
+        <div className="bg-luxury-cream/30 rounded-2xl p-8 mb-16">
+          <h3 className="text-2xl font-playfair font-semibold text-luxury-navy mb-6 text-center">
+            Lifestyle Offerings
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {lifestyleOfferings.map((offering, index) => (
+              <div key={index} className="text-center">
+                <div className="w-12 h-12 bg-luxury-gold/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-luxury-gold text-xl">✓</span>
+                </div>
+                <p className="text-sm text-muted-foreground font-medium">{offering}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -73,7 +100,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-luxury-navy mb-2">
-                      Full Name
+                      Name
                     </label>
                     <Input
                       id="name"
@@ -101,7 +128,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-luxury-navy mb-2">
-                    Email Address
+                    Email
                   </label>
                   <Input
                     id="email"
@@ -116,7 +143,7 @@ const Contact = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-luxury-navy mb-2">
-                    Message
+                    Message Box
                   </label>
                   <textarea
                     id="message"
@@ -159,6 +186,29 @@ const Contact = () => {
               </Card>
             ))}
 
+            {/* Social Media Links */}
+            <Card className="border-luxury-champagne/30">
+              <CardContent className="p-6">
+                <h4 className="text-xl font-playfair font-semibold text-luxury-navy mb-4">
+                  Connect With Us
+                </h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <Button variant="outline" className="border-luxury-champagne/50 hover:bg-luxury-gold/10">
+                    Facebook
+                  </Button>
+                  <Button variant="outline" className="border-luxury-champagne/50 hover:bg-luxury-gold/10">
+                    Instagram
+                  </Button>
+                  <Button variant="outline" className="border-luxury-champagne/50 hover:bg-luxury-gold/10">
+                    YouTube
+                  </Button>
+                  <Button variant="outline" className="border-luxury-champagne/50 hover:bg-luxury-gold/10">
+                    WhatsApp
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Map Placeholder */}
             <Card className="border-luxury-champagne/30">
               <CardContent className="p-0">
@@ -167,8 +217,8 @@ const Contact = () => {
                     <div className="w-16 h-16 bg-luxury-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-luxury-gold text-2xl">📍</span>
                     </div>
-                    <p className="text-luxury-navy font-medium">Interactive Map</p>
-                    <p className="text-sm text-muted-foreground">Find our offices worldwide</p>
+                    <p className="text-luxury-navy font-medium">Visit Our Office</p>
+                    <p className="text-sm text-muted-foreground">Jubilee Hills, Hyderabad</p>
                   </div>
                 </div>
               </CardContent>
