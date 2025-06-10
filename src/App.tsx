@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { useEffect, Suspense } from 'react';
+import { useEffect, Suspense, useState } from 'react';
 import Welcome from "./components/Welcome";
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
@@ -16,18 +16,77 @@ import VideoTest from "./pages/VideoTest";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import DamacProjects from "./pages/DamacProjects";
+import DamacProjectDetail from "./pages/DamacProjectDetail";
 
 const queryClient = new QueryClient();
 
 const AppContent = () => {
   const location = useLocation();
-  const hasSeenWelcome = localStorage.getItem('hasSeenWelcome') === 'true';
-
-  // Reset the welcome flag when needed (e.g., after a certain time or on logout)
+  const [showWelcome, setShowWelcome] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  
+  // Handle navigation from welcome page
+  const handleEnter = () => {
+    setShowWelcome(false);
+    // Store in session storage to remember the user has seen the welcome
+    sessionStorage.setItem('hasSeenWelcome', 'true');
+  };
+  
+  // Check if we should show welcome on initial load
   useEffect(() => {
-    // For development, you might want to see the welcome page on every refresh
-    // Uncomment the following line to reset the welcome flag
-    // localStorage.removeItem('hasSeenWelcome');
+    // Only check on the very first render
+    if (isInitialLoad) {
+      const hasSeenWelcome = sessionStorage.getItem('hasSeenWelcome') === 'true';
+      setShowWelcome(!hasSeenWelcome);
+      setIsInitialLoad(false);
+      
+      // Set a flag that we've loaded the page at least once
+      sessionStorage.setItem('hasInitialized', 'true');
+    }
+  }, [isInitialLoad]);
+  
+  // Handle page refresh - show welcome again
+  useEffect(() => {
+    // Check if this is a page refresh using performance API (modern browsers)
+    const isPageRefresh = () => {
+      try {
+        const navEntries = performance.getEntriesByType('navigation');
+        if (navEntries.length > 0) {
+          const navEntry = navEntries[0] as PerformanceNavigationTiming;
+          return navEntry.type === 'reload' || navEntry.type === 'back_forward';
+        }
+      } catch (e) {
+        console.warn('Performance Navigation Timing API not supported');
+      }
+      
+      // Fallback for browsers that don't support the Navigation Timing API
+      return performance.navigation?.type === 1; // 1 means page was refreshed
+    };
+    
+    if (isPageRefresh()) {
+      // Clear the flag on refresh
+      sessionStorage.removeItem('hasSeenWelcome');
+      setShowWelcome(true);
+    }
+    
+    // Clean up any existing unload flag
+    const wasUnloading = sessionStorage.getItem('wasUnloading') === 'true';
+    if (wasUnloading) {
+      sessionStorage.removeItem('hasSeenWelcome');
+      sessionStorage.removeItem('wasUnloading');
+      setShowWelcome(true);
+    }
+    
+    const handleBeforeUnload = () => {
+      // Set a flag that we're about to unload
+      sessionStorage.setItem('wasUnloading', 'true');
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
   }, []);
 
   return (
@@ -36,9 +95,9 @@ const AppContent = () => {
         <Route 
           path="/" 
           element={
-            hasSeenWelcome ? 
-            <Navigate to="/home" replace /> : 
-            <Welcome />
+            showWelcome ? 
+            <Welcome onEnter={handleEnter} /> : 
+            <Navigate to="/home" replace />
           } 
         />
         <Route path="/home" element={<Index />} />
@@ -49,6 +108,8 @@ const AppContent = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/damac" element={<DamacProjects />} />
+        <Route path="/damac/:id" element={<DamacProjectDetail />} />
         <Route path="/video-test" element={<VideoTest />} />
         <Route path="/index" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<NotFound />} />

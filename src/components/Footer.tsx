@@ -12,11 +12,11 @@ const Footer = () => {
     },
     {
       title: 'Company',
-      links: ['About Us', 'Team', 'Careers', 'Investors']
+      links: ['About Us', 'Team', 'Careers']
     },
     {
       title: 'Support',
-      links: ['Contact','Legal','Privacy','Terms']
+      links: ['Contact','Privacy']
     }
   ];
 
@@ -34,7 +34,7 @@ const Footer = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://wa.me/919010344488"
+                href="https://wa.me/your-whatsapp-number"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-luxury-gold/20 hover:bg-luxury-gold/30 rounded-full flex items-center justify-center transition-colors duration-300 group"

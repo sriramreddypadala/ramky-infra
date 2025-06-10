@@ -83,7 +83,8 @@ const Projects = () => {
         'Low-flow water fixtures',
         'Eco-certified building materials'
       ]
-    }
+    },
+
   ];
 
   return (

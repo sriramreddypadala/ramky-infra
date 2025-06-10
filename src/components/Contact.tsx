@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { MapPin } from 'lucide-react';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -322,24 +323,14 @@ const Contact = () => {
             </p>
             <div className="mt-4">
               <a
-                href="https://maps.app.goo.gl/ZDf2m1YfuBdbzGK68"
+                href="https://www.google.com/maps/place/17°23'51.4%22N+78°24'02.2%22E/@17.3976,78.4006,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d17.3976!4d78.4006?entry=ttu&pb=!1m14!1m8!1m3!1d3807.2389815104!2d78.4006!3d17.3976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzUxLjQiTiA3OMKwMjQnMDIuMiJF!5e0!3m2!1sen!2sin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-luxury-gold hover:text-luxury-navy transition-colors"
+                className="inline-flex items-center text-luxury-gold hover:text-luxury-champagne transition-colors mt-2"
+                aria-label="Open in Google Maps"
               >
+                <MapPin className="w-4 h-4 mr-2" />
                 <span>View on Google Maps</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 ml-1"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
               </a>
             </div>
           </div>

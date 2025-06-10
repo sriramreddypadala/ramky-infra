@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
-import { Home, Search, User } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { getAssetPath } from '@/utils/assetUtils';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +11,7 @@ const Header = () => {
   const navigationItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Projects', href: '/projects' },
+    { name: 'DAMAC Dubai', href: '/damac' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Testimonials', href: '/testimonials' },
     { name: 'About', href: '/about' },
@@ -24,9 +26,13 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="block h-12 md:h-14">
               <img 
-                src="/src/assets/ramky logo 2.png" 
+                src={getAssetPath('/src/assets/ramky logo 2.png')} 
                 alt="Ramky Infra & Developers" 
                 className="h-full w-auto object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = getAssetPath('/public/logo.png');
+                }}
               />
             </Link>
           </div>
@@ -44,17 +50,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="hover:bg-luxury-champagne/20">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hover:bg-luxury-champagne/20">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button className="bg-luxury-navy hover:bg-luxury-charcoal text-luxury-cream font-medium px-6">
-              Get Started
-            </Button>
+          {/* Desktop Actions - Removed search, profile, and get started buttons */}
+          <div className="hidden md:flex items-center">
+            {/* Empty div to maintain flex spacing */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,11 +86,7 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <div className="pt-2 space-y-2">
-                <Button className="w-full bg-luxury-navy hover:bg-luxury-charcoal text-luxury-cream">
-                  Get Started
-                </Button>
-              </div>
+              {/* Removed mobile get started button */}
             </div>
           </div>
         )}
