@@ -1,81 +1,148 @@
-
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { MapPin, ArrowRight, FileText } from 'lucide-react';
+
+interface Project {
+  id: number;
+  name: string;
+  tagline: string;
+  image: string;
+  description: string;
+  highlights: string[];
+  features: string[];
+  location: string;
+  connectivity: string[];
+  ecoFeatures?: string[];
+}
 
 const Projects = () => {
-  const projects = [
+  // Project data
+  const projects: Project[] = [
     {
       id: 1,
       name: 'Brindavanam',
-      image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=800&q=80',
-      description: 'Nature-inspired community with dedicated Goshala along Srisailam-Bangalore Highway',
-      features: ['Open Plots', 'Independent Villas', 'Gated Security', 'Green Infrastructure'],
-      location: 'Srisailam-Bangalore Highway'
+      tagline: 'Gated Community with Open Plots & Villas',
+      image: '/src/assets/DJI_0188.JPG',
+      description: 'Welcome to Brindavanam Gated Community, where nature meets luxury. Nestled amidst lush greenery, our gated community features a range of open plots and villas designed to provide you with the perfect blend of tranquility and modern amenities.',
+      highlights: [
+        'Premium open plots in a gated community',
+        'Meticulously landscaped with gardens and water bodies',
+        '24/7 security and gated access',
+        'Prime location on Srisailam-Bangalore Highway',
+      ],
+      features: [
+        'Premium Open Plots', 'Gated Community', '24/7 Security',
+        'Landscaped Gardens', 'Water Harvesting', 'Wide Roads',
+        'Clubhouse', 'Swimming Pool', 'Sports Facilities',
+        'Children\'s Play Area'
+      ],
+      location: 'Along 6-lane Srisailam Highway to Bangalore Highway',
+      connectivity: [
+        '1 hour to Gachibowli',
+        '25 minutes to Outer Ring Road',
+        'Close to Amazon Data Centre',
+        'Near World\'s Largest Pharma City'
+      ],
+      ecoFeatures: [
+        'Rainwater harvesting', 'Solar lighting', 'Green spaces',
+        'Waste management', 'Energy-efficient design'
+      ]
     },
     {
       id: 2,
-      name: 'Dwaraka',
-      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=800&q=80',
-      description: 'Where Nature Meets Luxury - Premium gated community near major landmarks',
-      features: ['Clubhouse', 'Swimming Pool', 'Landscaped Gardens', 'Rainwater Harvesting'],
-      location: 'Near Amazon Data Centre & Pharma City'
+      name: 'Ramky Villa',
+      tagline: 'EcoLife Community',
+      image: '/src/assets/villa.JPG',
+      description: 'A thoughtfully designed gated villa enclave that brings together luxury living and sustainable lifestyle. Set in a serene, green environment, this community is where your dream of eco-conscious, premium living becomes reality.',
+      highlights: [
+        'Premium gated villa community on 10 acres',
+        'Eco-friendly features and sustainable living',
+        'Vastu-compliant architecture',
+        'Private gardens with each villa',
+      ],
+      features: [
+        '3 & 4 BHK Villas', 'Private Gardens', 'Clubhouse with Fitness Studio',
+        'Swimming Pool & Yoga Deck', 'Children\'s Play Area',
+        'Walking/Jogging Tracks', 'Meditation Garden', 'Community Hall',
+        '24/7 Security & CCTV'
+      ],
+      location: 'Along 6-lane Srisailam Highway',
+      connectivity: [
+        'Near Pharma City & Amazon Data Centre',
+        '25 minutes to Outer Ring Road',
+        '1 hour to Gachibowli IT Hub',
+        'Easy access to Rajiv Gandhi International Airport'
+      ],
+      ecoFeatures: [
+        'Rainwater harvesting systems',
+        'Solar-powered street lighting',
+        'Organic waste management',
+        'Low-flow water fixtures',
+        'Eco-certified building materials'
+      ]
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-luxury-cream/10">
       <Header />
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="py-20 bg-luxury-navy text-luxury-cream">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-6">
-              Our Exclusive Projects
-            </h1>
-            <p className="text-xl md:text-2xl text-luxury-champagne max-w-3xl mx-auto">
-              Discover Ramky's premier gated communities, designed for comfort and environmental harmony
-            </p>
-          </div>
-        </section>
 
         {/* Projects Grid */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {projects.map((project) => (
-                <Card key={project.id} className="group luxury-hover bg-luxury-cream/20 border-luxury-champagne/30 overflow-hidden">
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                <Card key={project.id} className="group overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-luxury-gold/50 h-full flex flex-col">
+                  <div className="relative aspect-square overflow-hidden">
                     <img
                       src={project.image}
                       alt={project.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 luxury-gradient opacity-40"></div>
-                    <div className="absolute bottom-6 left-6 text-luxury-cream">
-                      <h3 className="text-3xl font-playfair font-bold mb-2">{project.name}</h3>
-                      <p className="text-luxury-champagne">{project.location}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                      <div>
+                        <h3 className="text-2xl font-playfair font-bold text-white mb-1">{project.name}</h3>
+                        <p className="text-luxury-champagne">{project.tagline}</p>
+                      </div>
                     </div>
                   </div>
                   
-                  <CardContent className="p-8">
-                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                  <CardContent className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-playfair font-bold text-luxury-navy mb-2">{project.name}</h3>
+                    <p className="text-luxury-charcoal/80 mb-4">{project.tagline}</p>
+                    
+                    <div className="flex items-center text-sm text-luxury-charcoal/70 mb-4">
+                      <MapPin className="w-4 h-4 mr-1 text-luxury-gold" />
+                      <span>{project.location}</span>
+                    </div>
+                    
+                    <p className="text-muted-foreground line-clamp-3 mb-6">
                       {project.description}
                     </p>
                     
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      {project.features.map((feature, index) => (
-                        <div key={index} className="flex items-center text-sm text-muted-foreground">
-                          <span className="w-2 h-2 bg-luxury-gold rounded-full mr-3"></span>
-                          {feature}
-                        </div>
-                      ))}
+                    <div className="mt-auto flex gap-2">
+                      <Button asChild className="flex-1 group-hover:bg-luxury-gold group-hover:text-luxury-navy transition-colors">
+                        <Link to={`/projects/${project.id}`}>
+                          View Details <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                      {project.name === 'Brindavanam' && (
+                        <Button asChild variant="outline" className="group-hover:bg-white/90 group-hover:border-luxury-gold transition-colors">
+                          <a 
+                            href="/src/assets/brouchures/Flyer .pdf" 
+                            download="Brindavanam-Brochure.pdf"
+                            className="flex items-center gap-2"
+                          >
+                            <FileText className="w-4 h-4" />
+                            Brochure
+                          </a>
+                        </Button>
+                      )}
                     </div>
-                    
-                    <Button className="w-full bg-luxury-navy hover:bg-luxury-charcoal text-luxury-cream font-semibold">
-                      View Project Details
-                    </Button>
                   </CardContent>
                 </Card>
               ))}

@@ -1,108 +1,104 @@
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
+import videoSource from "../assets/Dji 0741.mp4";
+import { Link } from "react-router-dom";
 
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-
-const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const heroImages = [
-    {
-      url: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?auto=format&fit=crop&w=2000&q=80',
-      title: 'Experience Exceptional Living with Ramky Infra',
-      subtitle: 'Eco-friendly gated communities with modern amenities and 24/7 security'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2000&q=80',
-      title: 'Brindavanam Goshala Community',
-      subtitle: 'Nature-focused lifestyle with dedicated cow shelter and green living'
-    },
-    {
-      url: 'https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?auto=format&fit=crop&w=2000&q=80',
-      title: 'Sustainable Real Estate Development',
-      subtitle: 'Building environmentally conscious communities for future generations'
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
-
+function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden pt-16 md:pt-20">
-      {/* Background Images */}
-      {heroImages.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
-          }`}
+    <section className="relative min-h-screen flex items-center justify-center bg-luxury-navy text-white overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 bg-black/60 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          preload="auto"
+          width="1920"
+          height="1080"
+          onLoadStart={(e) => console.log('Video loading started')}
+          onCanPlay={(e) => {
+            console.log('Video can play');
+            const video = e.target as HTMLVideoElement;
+            video.play().catch(error => {
+              console.error('Autoplay error:', error);
+            });
+          }}
+          onError={(e) => {
+            console.error('Video error:', e);
+            const video = e.target as HTMLVideoElement;
+            console.error('Video error details:', video.error);
+          }}
         >
-          <img
-            src={image.url}
-            alt={image.title}
-            className="w-full h-full object-cover"
-            loading={index === 0 ? 'eager' : 'lazy'}
-          />
-          <div className="absolute inset-0 luxury-gradient opacity-70" />
-        </div>
-      ))}
-
-      {/* Content */}
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-          
-          {/* Logo Section */}
-          <div className="mb-8">
-            <div className="w-48 h-48 md:w-56 md:h-56 mx-auto mb-6 bg-luxury-gold/10 rounded-full flex items-center justify-center backdrop-blur-sm p-4">
-              <img 
-                src="/src/assets/ramky logo 2.png" 
-                alt="Ramky Infra & Developers" 
-                className="h-full w-auto object-contain"
-              />
+          <source src={videoSource} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      <div className="container mx-auto px-4 z-10 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Hero Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-flex items-center gap-2 bg-luxury-gold/20 text-luxury-gold text-sm font-medium px-4 py-2 rounded-full mb-6">
+              <ShieldCheck className="w-4 h-4" />
+              DTCP & RERA Approved Projects
             </div>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair font-bold text-luxury-cream mb-6 animate-fade-in">
-            {heroImages[currentSlide].title}
-          </h1>
-          <p className="text-xl sm:text-2xl md:text-3xl text-luxury-champagne mb-8 animate-slide-up">
-            {heroImages[currentSlide].subtitle}
-          </p>
-
-          {/* CTA Button */}
-          <div className="mt-8">
-            <Link to="/projects">
-              <Button
-                size="lg"
-                className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy font-semibold px-12 py-6 text-lg"
-              >
-                View Our Projects
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
+              Premium <span className="text-luxury-gold">Luxury Plots</span> in Hyderabad's Most Sought-After Locations
+            </h1>
+            
+            <p className="text-xl text-luxury-champagne/90 mb-8 max-w-2xl">
+              Invest in DTCP & RERA approved open plots and luxury villas across Hyderabad, Kadthal, and Fourth Future City. Experience eco-friendly, IGBC certified living with premium amenities.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Button className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy text-lg h-14 px-8 rounded-lg font-semibold">
+                <Link to="/projects">
+                  View Projects
+                </Link>
               </Button>
-            </Link>
-          </div>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {[/* eslint-disable @typescript-eslint/no-unused-vars */
+                { icon: <MapPin className="w-6 h-6 text-luxury-gold" />, text: 'Prime Locations' },
+                { icon: <CheckCircle className="w-6 h-6 text-luxury-gold" />, text: 'DTCP & RERA Approved' },
+                { icon: <Leaf className="w-6 h-6 text-luxury-gold" />, text: 'Eco-Friendly Projects' },
+              ].map((item, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 + (index * 0.1) }}
+                  className="flex items-center gap-2 bg-white/5 backdrop-blur-sm p-3 rounded-lg"
+                >
+                  {item.icon}
+                  <span className="text-sm font-medium">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>        
         </div>
       </div>
-
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentSlide
-                ? 'bg-luxury-gold scale-125'
-                : 'bg-luxury-cream/50 hover:bg-luxury-cream/75'
-            }`}
-          />
-        ))}
+      
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="animate-bounce flex flex-col items-center">
+          <span className="text-sm text-white/70 mb-2">Scroll Down</span>
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-1">
+            <div className="w-1 h-2 bg-white rounded-full animate-bounce"></div>
+          </div>
+        </div>
       </div>
     </section>
   );
-};
+}
 
 export default Hero;
