@@ -12,8 +12,8 @@ const Header = () => {
     { name: 'Projects', href: '/projects' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Testimonials', href: '/testimonials' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -34,23 +34,13 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigationItems.map((item) => (
-              item.href.startsWith('#') ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground hover:text-luxury-gold transition-colors duration-200 font-medium"
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-foreground hover:text-luxury-gold transition-colors duration-200 font-medium"
-                >
-                  {item.name}
-                </Link>
-              )
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-foreground hover:text-luxury-gold transition-colors duration-200 font-medium"
+              >
+                {item.name}
+              </Link>
             ))}
           </nav>
 
@@ -89,25 +79,14 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-luxury-champagne/20">
               {navigationItems.map((item) => (
-                item.href.startsWith('#') ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block px-3 py-2 text-foreground hover:text-luxury-gold hover:bg-luxury-champagne/10 transition-colors duration-200 font-medium rounded-md"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="block px-3 py-2 text-foreground hover:text-luxury-gold hover:bg-luxury-champagne/10 transition-colors duration-200 font-medium rounded-md"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="block px-3 py-2 text-foreground hover:text-luxury-gold hover:bg-luxury-champagne/10 transition-colors duration-200 font-medium rounded-md"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
               <div className="pt-2 space-y-2">
                 <Button className="w-full bg-luxury-navy hover:bg-luxury-charcoal text-luxury-cream">

@@ -124,24 +124,16 @@ const Projects = () => {
                       {project.description}
                     </p>
                     
-                    <div className="mt-auto flex gap-2">
-                      <Button asChild className="flex-1 group-hover:bg-luxury-gold group-hover:text-luxury-navy transition-colors">
-                        <Link to={`/projects/${project.id}`}>
-                          View Details <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <div className="mt-auto">
+                      <Button 
+                        asChild 
+                        className="w-full group-hover:bg-luxury-gold group-hover:text-luxury-navy transition-colors"
+                      >
+                        <Link to={`/projects/${project.id}`} className="flex items-center justify-center">
+                          View Details 
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                         </Link>
                       </Button>
-                      {project.name === 'Brindavanam' && (
-                        <Button asChild variant="outline" className="group-hover:bg-white/90 group-hover:border-luxury-gold transition-colors">
-                          <a 
-                            href="/src/assets/brouchures/Flyer .pdf" 
-                            download="Brindavanam-Brochure.pdf"
-                            className="flex items-center gap-2"
-                          >
-                            <FileText className="w-4 h-4" />
-                            Brochure
-                          </a>
-                        </Button>
-                      )}
                     </div>
                   </CardContent>
                 </Card>

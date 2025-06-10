@@ -85,10 +85,31 @@ const projects = [
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const project = projects.find(p => p.id === parseInt(id || '1'));
+  
+  // Debug log to check the ID
+  console.log('Project ID from URL:', id);
+  
+  // Convert id to number and find the project
+  const projectId = id ? parseInt(id, 10) : 1;
+  const project = projects.find(p => p.id === projectId);
+  
+  // Debug log to check found project
+  console.log('Found project:', project);
 
   if (!project) {
-    return <div>Project not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-luxury-navy mb-4">Project Not Found</h2>
+          <p className="text-luxury-charcoal/70 mb-6">The project you're looking for doesn't exist or has been moved.</p>
+          <Button asChild>
+            <Link to="/projects" className="bg-luxury-gold hover:bg-luxury-gold/90 text-luxury-navy">
+              Back to Projects
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
   }
 
   return (

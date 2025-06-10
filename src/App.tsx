@@ -14,6 +14,8 @@ import Testimonials from "./pages/Testimonials";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import VideoTest from "./pages/VideoTest";
 import NotFound from "./pages/NotFound";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,8 @@ const AppContent = () => {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/video-test" element={<VideoTest />} />
         <Route path="/index" element={<Navigate to="/home" replace />} />

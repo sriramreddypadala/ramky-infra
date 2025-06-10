@@ -4,19 +4,19 @@ const Footer = () => {
   const footerSections = [
     {
       title: 'Properties',
-      links: ['Luxury Homes', 'Penthouses', 'Estates', 'Commercial', 'Investment']
+      links: ['Estates',  'Commercial', 'Investment','Luxury Homes']
     },
     {
       title: 'Services',
-      links: ['Buying', 'Selling', 'Renting', 'Property Management', 'Consultation']
+      links: ['Property Management', 'Consultation']
     },
     {
       title: 'Company',
-      links: ['About Us', 'Team', 'Careers', 'Press', 'Investors']
+      links: ['About Us', 'Team', 'Careers', 'Investors']
     },
     {
       title: 'Support',
-      links: ['Contact', 'FAQ', 'Legal', 'Privacy', 'Terms']
+      links: ['Contact','Legal','Privacy','Terms']
     }
   ];
 
