@@ -3,9 +3,25 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getAssetPath } from "@/utils/assetUtils";
 
 function Hero() {
+  const getVideoPath = () => {
+    // Try multiple video paths for better compatibility
+    const videoFiles = [
+      "Dji 0741.mp4",
+      "videos/Dji 0741.mp4",
+      "assets/Dji 0741.mp4"
+    ];
+    
+    // In production, use relative paths
+    if (import.meta.env.PROD) {
+      return videoFiles.map(file => `./${file}`);
+    }
+    
+    // In development, use absolute paths
+    return videoFiles.map(file => `/${file}`);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-luxury-navy text-white overflow-hidden">
       {/* Background Video */}
@@ -16,10 +32,10 @@ function Hero() {
           muted
           playsInline
           className="w-full h-full object-cover"
-          preload="auto"
+          preload="metadata"
           width="1920"
           height="1080"
-          onLoadStart={(e) => console.log('Video loading started')}
+          onLoadStart={() => console.log('Video loading started')}
           onCanPlay={(e) => {
             console.log('Video can play');
             const video = e.target as HTMLVideoElement;
@@ -28,12 +44,19 @@ function Hero() {
             });
           }}
           onError={(e) => {
-            console.error('Video error:', e);
+            console.error('Video error occurred');
             const video = e.target as HTMLVideoElement;
-            console.error('Video error details:', video.error);
+            if (video.error) {
+              console.error('Video error code:', video.error.code);
+              console.error('Video error message:', video.error.message);
+            }
           }}
+          onLoadedData={() => console.log('Video data loaded')}
+          onLoadedMetadata={() => console.log('Video metadata loaded')}
         >
-          <source src={getAssetPath("Dji 0741.mp4")} type="video/mp4" />
+          {getVideoPath().map((path, index) => (
+            <source key={index} src={path} type="video/mp4" />
+          ))}
           Your browser does not support the video tag.
         </video>
       </div>
@@ -68,7 +91,7 @@ function Hero() {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[/* eslint-disable @typescript-eslint/no-unused-vars */
+              {[
                 { icon: <MapPin className="w-6 h-6 text-luxury-gold" />, text: 'Prime Locations' },
                 { icon: <CheckCircle className="w-6 h-6 text-luxury-gold" />, text: 'DTCP & RERA Approved' },
                 { icon: <Leaf className="w-6 h-6 text-luxury-gold" />, text: 'Eco-Friendly Projects' },
