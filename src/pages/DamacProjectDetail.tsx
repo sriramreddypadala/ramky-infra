@@ -13,13 +13,13 @@ const projects = [
     id: 1,
     name: 'AKOYA Oxygen',
     tagline: 'Dubai\'s Green Heart',
-    image: getAssetPath('damac media/Akoya Oxygen.jpg'),
+    image: getAssetPath('akoya-oxygen.jpg'),
     gallery: [
-      getAssetPath('damac media/Akoya Oxygen.jpg'),
-      getAssetPath('damac media/Akoya Oxygen.jpg'),
-      getAssetPath('damac media/Akoya Oxygen.jpg'),
-      getAssetPath('damac media/Akoya Oxygen.jpg'),
-      getAssetPath('damac media/Akoya Oxygen.jpg')
+      getAssetPath('akoya-oxygen.jpg'),
+      getAssetPath('akoya-oxygen.jpg'),
+      getAssetPath('akoya-oxygen.jpg'),
+      getAssetPath('akoya-oxygen.jpg'),
+      getAssetPath('akoya-oxygen.jpg')
     ],
     description: 'A green oasis in the heart of Dubai, AKOYA Oxygen offers a unique blend of nature and modern living with its lush landscapes and contemporary villas.',
     highlights: [
@@ -44,13 +44,13 @@ const projects = [
     id: 2,
     name: 'AYKON CITY',
     tagline: 'Ultra-Luxury Waterfront Living',
-    image: getAssetPath('damac media/AYKON CITY.jpg'),
+    image: getAssetPath('aykon-city.jpg'),
     gallery: [
-      getAssetPath('damac media/AYKON CITY.jpg'),
-      getAssetPath('damac media/AYKON CITY.jpg'),
-      getAssetPath('damac media/AYKON CITY.jpg'),
-      getAssetPath('damac media/AYKON CITY.jpg'),
-      getAssetPath('damac media/AYKON CITY.jpg')
+      getAssetPath('aykon-city.jpg'),
+      getAssetPath('aykon-city.jpg'),
+      getAssetPath('aykon-city.jpg'),
+      getAssetPath('aykon-city.jpg'),
+      getAssetPath('aykon-city.jpg')
     ],
     description: 'A masterpiece of design, AYKON CITY offers ultra-luxury waterfront living with exclusive interiors and finishes.',
     highlights: [
@@ -75,13 +75,13 @@ const projects = [
     id: 3,
     name: 'DAMAC Hills',
     tagline: 'Luxury Living with Golf Course Views',
-    image: getAssetPath('damac media/damac hills.jpg'),
+    image: getAssetPath('damac-hills.jpg'),
     gallery: [
-      getAssetPath('damac media/damac hills.jpg'),
-      getAssetPath('damac media/damac hills.jpg'),
-      getAssetPath('damac media/damac hills.jpg'),
-      getAssetPath('damac media/damac hills.jpg'),
-      getAssetPath('damac media/damac hills.jpg')
+      getAssetPath('damac-hills.jpg'),
+      getAssetPath('damac-hills.jpg'),
+      getAssetPath('damac-hills.jpg'),
+      getAssetPath('damac-hills.jpg'),
+      getAssetPath('damac-hills.jpg')
     ],
     description: 'An exclusive gated community featuring luxury villas and apartments with stunning views of the Trump International Golf Club Dubai.',
     highlights: [
@@ -106,13 +106,13 @@ const projects = [
     id: 4,
     name: 'DAMAC Lagoons',
     tagline: 'Mediterranean Inspired Waterfront Living',
-    image: getAssetPath('damac media/DAMAC Lagoons.jpg'),
+    image: getAssetPath('damac-lagoons.jpg'),
     gallery: [
-      getAssetPath('damac media/DAMAC Lagoons.jpg'),
-      getAssetPath('damac media/DAMAC Lagoons.jpg'),
-      getAssetPath('damac media/DAMAC Lagoons.jpg'),
-      getAssetPath('damac media/DAMAC Lagoons.jpg'),
-      getAssetPath('damac media/DAMAC Lagoons.jpg')
+      getAssetPath('damac-lagoons.jpg'),
+      getAssetPath('damac-lagoons.jpg'),
+      getAssetPath('damac-lagoons.jpg'),
+      getAssetPath('damac-lagoons.jpg'),
+      getAssetPath('damac-lagoons.jpg')
     ],
     description: 'Experience the charm of Mediterranean living at DAMAC Lagoons, featuring crystal lagoons and luxury villas with private beach access.',
     highlights: [
@@ -137,13 +137,13 @@ const projects = [
     id: 5,
     name: 'DAMAC Tower Nine Elms London',
     tagline: 'Luxury Living in the Heart of London',
-    image: getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
+    image: getAssetPath('damac-tower-london.jpg'),
     gallery: [
-      getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
-      getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
-      getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
-      getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
-      getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg')
+      getAssetPath('damac-tower-london.jpg'),
+      getAssetPath('damac-tower-london.jpg'),
+      getAssetPath('damac-tower-london.jpg'),
+      getAssetPath('damac-tower-london.jpg'),
+      getAssetPath('damac-tower-london.jpg')
     ],
     description: 'Experience luxury living in one of London\'s most prestigious neighborhoods with stunning views of the River Thames and city skyline.',
     highlights: [
@@ -201,6 +201,10 @@ const DamacProjectDetail = () => {
               src={project.image}
               alt={project.name}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = `https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=1200&h=800&fit=crop`;
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-luxury-navy/90 to-transparent" />
           </div>
@@ -322,11 +326,14 @@ const DamacProjectDetail = () => {
                       src={image} 
                       alt={`${project.name} - ${index + 1}`} 
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=600&h=600&fit=crop`;
+                      }}
                     />
                   </div>
                 ))
               ) : (
-                // Fallback in case gallery is not defined
                 <div className="aspect-square bg-luxury-navy/5 rounded-lg overflow-hidden flex items-center justify-center">
                   <p className="text-luxury-navy/50">No images available</p>
                 </div>

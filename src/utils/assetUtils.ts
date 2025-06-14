@@ -1,7 +1,7 @@
 
 /**
  * Helper function to get correct asset path for static hosting
- * @param filename - The filename (e.g., 'logo.png', 'video.mp4')
+ * @param filename - The filename (e.g., 'ramky-logo.png', 'hero-video.mp4')
  * @returns The correct path to the asset
  */
 const getAssetPath = (filename: string): string => {

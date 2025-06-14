@@ -29,6 +29,10 @@ const Header = () => {
                 src={getAssetPath('ramky-logo.png')} 
                 alt="Ramky Infra & Developers" 
                 className="h-full w-auto object-contain"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
               />
             </Link>
           </div>

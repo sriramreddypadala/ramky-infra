@@ -156,6 +156,10 @@ const DamacProjects = () => {
                   src={getAssetPath('damac-logo.png')} 
                   alt="DAMAC Properties" 
                   className="h-20 md:h-28 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
                 />
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6">DAMAC Properties</h1>
@@ -177,6 +181,10 @@ const DamacProjects = () => {
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=800&h=600&fit=crop`;
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>

@@ -17,6 +17,12 @@ function Hero() {
           playsInline
           className="w-full h-full object-cover"
           preload="metadata"
+          onError={(e) => {
+            console.log('Video failed to load:', e);
+            // Hide video element if it fails to load
+            const target = e.target as HTMLVideoElement;
+            target.style.display = 'none';
+          }}
         >
           <source src={getAssetPath('hero-video.mp4')} type="video/mp4" />
           Your browser does not support the video tag.

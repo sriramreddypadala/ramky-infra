@@ -103,6 +103,10 @@ const Projects = () => {
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?w=800&h=600&fit=crop`;
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                       <div>
