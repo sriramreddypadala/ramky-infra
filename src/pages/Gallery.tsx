@@ -1,20 +1,22 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getAssetPath } from '@/utils/assetUtils';
 
-// Image and video files from the public directory
+// Image and video files from the public directory - using correct public paths
 const imageFiles = [
-  '/gallery/images/DJI_0176.JPG',
-  '/gallery/images/DJI_0178 (1).JPG',
-  '/gallery/images/DJI_0203.JPG'
+  'gallery/images/DJI_0176.JPG',
+  'gallery/images/DJI_0178 (1).JPG',
+  'gallery/images/DJI_0203.JPG'
 ];
 
 const videoFiles = [
-  '/gallery/videos/Dji 0714.mp4',
-  '/gallery/videos/Dji 0718.mp4',
-  '/gallery/videos/Dji 0731.mp4',
-  '/gallery/videos/Dji 0741 (1).mp4'
+  'gallery/videos/Dji 0714.mp4',
+  'gallery/videos/Dji 0718.mp4',
+  'gallery/videos/Dji 0731.mp4',
+  'gallery/videos/Dji 0741 (1).mp4'
 ];
 
 type MediaItem = {
@@ -45,13 +47,13 @@ const Gallery = () => {
   // Refs
   const videoRefs = useRef<{[key: string]: HTMLVideoElement | null}>({});
 
-  // Initialize gallery media
+  // Initialize gallery media with proper asset paths
   useEffect(() => {
     const loadMedia = () => {
       const loadedImages = imageFiles.map((file, index) => ({
         id: `img-${index}`,
         type: 'image' as const,
-        src: file,
+        src: getAssetPath(file),
         title: '',
         description: ''
       }));
@@ -62,10 +64,9 @@ const Gallery = () => {
         return {
           id: videoId,
           type: 'video' as const,
-          src: file,
+          src: getAssetPath(file),
           title: '',
           description: '',
-
           thumbnail: loadedImages[index % loadedImages.length]?.src
         };
       });
@@ -83,7 +84,6 @@ const Gallery = () => {
     ? galleryMedia.filter(media => media.type === 'video')
     : galleryMedia.filter(media => media.type === 'image');
 
-  // Video control functions
   const playVideo = async (video: HTMLVideoElement | null, mediaId: string) => {
     if (!video) return false;
     try {
@@ -113,7 +113,6 @@ const Gallery = () => {
     }
   };
 
-  // Event handlers
   const handleVideoClick = async (media: MediaItem, e: React.MouseEvent) => {
     e.stopPropagation();
     const video = videoRefs.current[media.id];
@@ -149,7 +148,6 @@ const Gallery = () => {
     setSelectedMedia(filteredMedia[newIndex]);
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedMedia) return;
@@ -173,7 +171,6 @@ const Gallery = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedMedia]);
 
-  // Clean up on unmount
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'auto';
@@ -220,6 +217,9 @@ const Gallery = () => {
                   alt={media.title}
                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
+                  onError={(e) => {
+                    console.error('Image failed to load:', media.src);
+                  }}
                 />
               ) : (
                 <div className="relative">
@@ -232,6 +232,10 @@ const Gallery = () => {
                     playsInline
                     poster={media.thumbnail}
                     onClick={(e) => handleVideoClick(media, e)}
+                    onError={(e) => {
+                      console.error('Video failed to load:', media.src);
+                      setVideoErrors(prev => ({...prev, [media.id]: true}));
+                    }}
                   />
                   {loadingVideos[media.id] && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 transition-opacity duration-300">
