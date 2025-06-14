@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 import { getAssetPath } from "@/utils/assetUtils";
 
 function Hero() {
-  // Use filename without spaces for better compatibility
-  const videoSrc = getAssetPath("Dji-0741.mp4");
-
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-luxury-navy text-white overflow-hidden">
       {/* Background Video */}
@@ -20,24 +17,8 @@ function Hero() {
           playsInline
           className="w-full h-full object-cover"
           preload="metadata"
-          onLoadStart={() => console.log('Video loading started:', videoSrc)}
-          onCanPlay={(e) => {
-            console.log('Video can play');
-            const video = e.target as HTMLVideoElement;
-            video.play().catch(error => {
-              console.error('Autoplay error:', error);
-            });
-          }}
-          onError={(e) => {
-            console.error('Video error occurred for:', videoSrc);
-            const video = e.target as HTMLVideoElement;
-            if (video.error) {
-              console.error('Video error code:', video.error.code);
-              console.error('Video error message:', video.error.message);
-            }
-          }}
         >
-          <source src={videoSrc} type="video/mp4" />
+          <source src={getAssetPath('hero-video.mp4')} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

@@ -18,9 +18,6 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  // Use filename without spaces for better compatibility
-  const logoSrc = getAssetPath("ramky-logo-2.png");
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-2 transition-all duration-300 hover:bg-background/80 hover:backdrop-blur-md hover:border-b hover:border-luxury-champagne/20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,17 +26,9 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="block h-12 md:h-14">
               <img 
-                src={logoSrc} 
+                src={getAssetPath('ramky-logo.png')} 
                 alt="Ramky Infra & Developers" 
                 className="h-full w-auto object-contain"
-                onError={(e) => {
-                  console.error('Logo failed to load:', logoSrc);
-                  const target = e.target as HTMLImageElement;
-                  // Try alternative filename
-                  if (!target.src.includes('ramky_logo')) {
-                    target.src = getAssetPath('ramky_logo_2.png');
-                  }
-                }}
               />
             </Link>
           </div>
@@ -57,7 +46,7 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop Actions - Removed search, profile, and get started buttons */}
+          {/* Desktop Actions */}
           <div className="hidden md:flex items-center">
             {/* Empty div to maintain flex spacing */}
           </div>

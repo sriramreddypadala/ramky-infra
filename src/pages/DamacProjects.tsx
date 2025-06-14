@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,7 +27,7 @@ const DamacProjects = () => {
       id: 1,
       name: 'AKOYA Oxygen',
       tagline: 'Dubai\'s Green Heart',
-      image: getAssetPath('Akoya Oxygen.jpg'),
+      image: getAssetPath('akoya-oxygen.jpg'),
       description: 'A green oasis in the heart of Dubai, AKOYA Oxygen offers a unique blend of nature and modern living with its lush landscapes and contemporary villas.',
       highlights: [
         '75% green open spaces',
@@ -49,7 +50,7 @@ const DamacProjects = () => {
       id: 2,
       name: 'AYKON CITY',
       tagline: 'Ultra-Luxury Waterfront Living',
-      image: getAssetPath('AYKON CITY.jpg'),
+      image: getAssetPath('aykon-city.jpg'),
       description: 'A masterpiece of design, AYKON CITY offers ultra-luxury waterfront living with exclusive interiors and finishes.',
       highlights: [
         'Stunning waterfront views',
@@ -72,7 +73,7 @@ const DamacProjects = () => {
       id: 3,
       name: 'DAMAC Hills',
       tagline: 'Luxury Living with Golf Course Views',
-      image: getAssetPath('damac hills.jpg'),
+      image: getAssetPath('damac-hills.jpg'),
       description: 'An exclusive gated community featuring luxury villas and apartments with stunning views of the Trump International Golf Club Dubai.',
       highlights: [
         'Golf course views',
@@ -95,7 +96,7 @@ const DamacProjects = () => {
       id: 4,
       name: 'DAMAC Lagoons',
       tagline: 'Mediterranean Inspired Waterfront Living',
-      image: getAssetPath('DAMAC Lagoons.jpg'),
+      image: getAssetPath('damac-lagoons.jpg'),
       description: 'Experience the charm of Mediterranean living at DAMAC Lagoons, featuring crystal lagoons and luxury villas with private beach access.',
       highlights: [
         'Private beach access',
@@ -118,7 +119,7 @@ const DamacProjects = () => {
       id: 5,
       name: 'DAMAC Tower Nine Elms London',
       tagline: 'Luxury Living in the Heart of London',
-      image: getAssetPath('DAMAC Tower Nine Elms London.jpeg'),
+      image: getAssetPath('damac-tower-london.jpg'),
       description: 'Experience luxury living in one of London\'s most prestigious neighborhoods with stunning views of the River Thames and city skyline.',
       highlights: [
         'Prime London location',
@@ -152,7 +153,7 @@ const DamacProjects = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="mb-8 flex justify-center">
                 <img 
-                  src={getAssetPath('damac logo.png')} 
+                  src={getAssetPath('damac-logo.png')} 
                   alt="DAMAC Properties" 
                   className="h-20 md:h-28 object-contain"
                 />
@@ -176,9 +177,6 @@ const DamacProjects = () => {
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => {
-                        console.error('DAMAC project image failed to load:', project.image);
-                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
@@ -193,7 +191,6 @@ const DamacProjects = () => {
                         </div>
                       </div>
                     </div>
-
                   </CardContent>
                 </Card>
               ))}
@@ -236,38 +233,20 @@ const DamacProjects = () => {
                       message: formData.get('message')
                     };
                     
-                    console.log('Submitting form data:', formDataObj);
-                    
                     const response = await fetch('https://script.google.com/macros/s/AKfycbz8L7HlQ2kACNHBm-49U_0DuFagmyFvIfZtADvosYNqpauvi0ePpST23ISilpMkiaaF/exec', {
                       method: 'POST',
                       body: JSON.stringify(formDataObj),
                       headers: {
                         'Content-Type': 'application/json',
                       },
-                      mode: 'no-cors' // Add this to handle CORS
+                      mode: 'no-cors'
                     });
                     
-                    console.log('Response status:', response.status);
-                    console.log('Response headers:', [...response.headers.entries()]);
-                    
-                    let result;
-                    try {
-                      // Try to parse response as JSON
-                      result = await response.text();
-                      console.log('Raw response text:', result);
-                      result = result ? JSON.parse(result) : {};
-                    } catch (e) {
-                      console.warn('Could not parse response as JSON:', e);
-                      result = {};
-                    }
-                    
-                    console.log('Parsed response:', result);
-                    
-                    if (response.ok || response.status === 0) { // status 0 for no-cors mode
+                    if (response.ok || response.status === 0) {
                       alert('Thank you for your inquiry! We will get back to you soon.');
                       form.reset();
                     } else {
-                      throw new Error(result.error || `Form submission failed with status ${response.status}`);
+                      throw new Error('Form submission failed');
                     }
                   } catch (error) {
                     console.error('Form submission error:', error);
@@ -289,7 +268,6 @@ const DamacProjects = () => {
                       className="w-full px-4 py-2 rounded bg-luxury-navy border border-luxury-gold/30 text-white placeholder-luxury-gold/50 focus:outline-none focus:ring-1 focus:ring-luxury-gold"
                       required
                     />
-
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-luxury-champagne/80 mb-1">Email Address</label>
