@@ -1,8 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
-import videoSource from "../assets/Dji 0741.mp4";
 import { Link } from "react-router-dom";
+import { getAssetPath } from "@/utils/assetUtils";
 
 function Hero() {
   return (
@@ -32,7 +33,7 @@ function Hero() {
             console.error('Video error details:', video.error);
           }}
         >
-          <source src={videoSource} type="video/mp4" />
+          <source src={getAssetPath("Dji 0741.mp4")} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
