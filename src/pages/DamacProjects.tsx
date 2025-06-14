@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,13 +20,20 @@ interface Project {
 }
 
 const DamacProjects = () => {
+  const getImageSrc = (imageName: string) => {
+    if (import.meta.env.DEV) {
+      return `/${imageName}`;
+    }
+    return `./${imageName}`;
+  };
+
   // DAMAC Projects data
   const projects: Project[] = [
     {
       id: 1,
       name: 'AKOYA Oxygen',
       tagline: 'Dubai\'s Green Heart',
-      image: getAssetPath('damac media/Akoya Oxygen.jpg'),
+      image: getImageSrc('Akoya Oxygen.jpg'),
       description: 'A green oasis in the heart of Dubai, AKOYA Oxygen offers a unique blend of nature and modern living with its lush landscapes and contemporary villas.',
       highlights: [
         '75% green open spaces',
@@ -50,7 +56,7 @@ const DamacProjects = () => {
       id: 2,
       name: 'AYKON CITY',
       tagline: 'Ultra-Luxury Waterfront Living',
-      image: getAssetPath('damac media/AYKON CITY.jpg'),
+      image: getImageSrc('AYKON CITY.jpg'),
       description: 'A masterpiece of design, AYKON CITY offers ultra-luxury waterfront living with exclusive interiors and finishes.',
       highlights: [
         'Stunning waterfront views',
@@ -73,7 +79,7 @@ const DamacProjects = () => {
       id: 3,
       name: 'DAMAC Hills',
       tagline: 'Luxury Living with Golf Course Views',
-      image: getAssetPath('damac media/damac hills.jpg'),
+      image: getImageSrc('damac hills.jpg'),
       description: 'An exclusive gated community featuring luxury villas and apartments with stunning views of the Trump International Golf Club Dubai.',
       highlights: [
         'Golf course views',
@@ -96,7 +102,7 @@ const DamacProjects = () => {
       id: 4,
       name: 'DAMAC Lagoons',
       tagline: 'Mediterranean Inspired Waterfront Living',
-      image: getAssetPath('damac media/DAMAC Lagoons.jpg'),
+      image: getImageSrc('DAMAC Lagoons.jpg'),
       description: 'Experience the charm of Mediterranean living at DAMAC Lagoons, featuring crystal lagoons and luxury villas with private beach access.',
       highlights: [
         'Private beach access',
@@ -119,7 +125,7 @@ const DamacProjects = () => {
       id: 5,
       name: 'DAMAC Tower Nine Elms London',
       tagline: 'Luxury Living in the Heart of London',
-      image: getAssetPath('damac media/DAMAC Tower Nine Elms London.jpeg'),
+      image: getImageSrc('DAMAC Tower Nine Elms London.jpeg'),
       description: 'Experience luxury living in one of London\'s most prestigious neighborhoods with stunning views of the River Thames and city skyline.',
       highlights: [
         'Prime London location',
@@ -153,7 +159,7 @@ const DamacProjects = () => {
             <div className="max-w-4xl mx-auto text-center">
               <div className="mb-8 flex justify-center">
                 <img 
-                  src={getAssetPath('damac media/damac logo.png')} 
+                  src={getImageSrc('damac logo.png')} 
                   alt="DAMAC Properties" 
                   className="h-20 md:h-28 object-contain"
                 />

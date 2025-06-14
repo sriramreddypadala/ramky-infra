@@ -1,25 +1,16 @@
-
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Hero() {
-  const getVideoPath = () => {
-    // Try multiple video paths for better compatibility
-    const videoFiles = [
-      "Dji 0741.mp4",
-      "videos/Dji 0741.mp4",
-      "assets/Dji 0741.mp4"
-    ];
-    
-    // In production, use relative paths
-    if (import.meta.env.PROD) {
-      return videoFiles.map(file => `./${file}`);
+  const getVideoSrc = () => {
+    // The video file should be in the public folder for proper access
+    // Try the exact filename from your assets
+    if (import.meta.env.DEV) {
+      return "/Dji 0741.mp4"; // Development - served from public folder
     }
-    
-    // In development, use absolute paths
-    return videoFiles.map(file => `/${file}`);
+    return "./Dji 0741.mp4"; // Production - relative to build output
   };
 
   return (
@@ -33,8 +24,6 @@ function Hero() {
           playsInline
           className="w-full h-full object-cover"
           preload="metadata"
-          width="1920"
-          height="1080"
           onLoadStart={() => console.log('Video loading started')}
           onCanPlay={(e) => {
             console.log('Video can play');
@@ -54,9 +43,7 @@ function Hero() {
           onLoadedData={() => console.log('Video data loaded')}
           onLoadedMetadata={() => console.log('Video metadata loaded')}
         >
-          {getVideoPath().map((path, index) => (
-            <source key={index} src={path} type="video/mp4" />
-          ))}
+          <source src={getVideoSrc()} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

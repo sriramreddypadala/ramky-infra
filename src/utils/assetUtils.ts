@@ -1,7 +1,7 @@
 
 /**
  * Helper function to get correct asset path in both dev and prod
- * @param path - The path to the asset (relative to public folder in production)
+ * @param path - The path to the asset (relative to public folder)
  * @returns The correct path to the asset based on the environment
  */
 const getAssetPath = (path: string): string => {
@@ -11,28 +11,18 @@ const getAssetPath = (path: string): string => {
   console.log('Getting asset path for:', cleanPath);
   console.log('Environment:', import.meta.env.MODE);
   
-  // In development, use the path as is (handled by Vite dev server)
+  // In development, use absolute paths (served from public folder)
   if (import.meta.env.DEV) {
     const devPath = `/${cleanPath}`;
     console.log('Dev path:', devPath);
     return devPath;
   }
   
-  // In production, try multiple possible paths
-  const prodPaths = [
-    `./${cleanPath}`,
-    `/${cleanPath}`,
-    `./assets/${cleanPath}`,
-    `/assets/${cleanPath}`
-  ];
+  // In production, use relative paths (assets are in the same directory as index.html)
+  const prodPath = `./${cleanPath}`;
+  console.log('Production path:', prodPath);
   
-  console.log('Production paths to try:', prodPaths);
-  
-  // Return the first path for now, but log all possibilities
-  const selectedPath = `./${cleanPath}`;
-  console.log('Selected path:', selectedPath);
-  
-  return selectedPath;
+  return prodPath;
 };
 
 export { getAssetPath };
