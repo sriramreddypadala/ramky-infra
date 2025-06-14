@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { getAssetPath } from '@/utils/assetUtils';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,12 +17,7 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const getLogoSrc = () => {
-    if (import.meta.env.DEV) {
-      return "/ramky logo 2.png";
-    }
-    return "./ramky logo 2.png";
-  };
+  const logoSrc = getAssetPath("ramky logo 2.png");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-2 transition-all duration-300 hover:bg-background/80 hover:backdrop-blur-md hover:border-b hover:border-luxury-champagne/20">
@@ -32,15 +27,15 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="block h-12 md:h-14">
               <img 
-                src={getLogoSrc()} 
+                src={logoSrc} 
                 alt="Ramky Infra & Developers" 
                 className="h-full w-auto object-contain"
                 onError={(e) => {
-                  console.error('Logo failed to load');
+                  console.error('Logo failed to load:', logoSrc);
                   const target = e.target as HTMLImageElement;
-                  // Fallback to a different path if needed
+                  // Try fallback without the space in filename
                   if (!target.src.includes('fallback')) {
-                    target.src = './logo.png';
+                    target.src = getAssetPath('ramky-logo-2.png');
                   }
                 }}
               />

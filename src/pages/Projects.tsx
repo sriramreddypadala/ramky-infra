@@ -1,10 +1,10 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { MapPin, ArrowRight, FileText } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
+import { getAssetPath } from '@/utils/assetUtils';
 
 interface Project {
   id: number;
@@ -20,20 +20,13 @@ interface Project {
 }
 
 const Projects = () => {
-  const getImageSrc = (imageName: string) => {
-    if (import.meta.env.DEV) {
-      return `/${imageName}`;
-    }
-    return `./${imageName}`;
-  };
-
   // Project data
   const projects: Project[] = [
     {
       id: 1,
       name: 'Brindavanam',
       tagline: 'Gated Community with Open Plots & Villas',
-      image: getImageSrc('DJI_0188.JPG'),
+      image: getAssetPath('DJI_0188.JPG'),
       description: 'Welcome to Brindavanam Gated Community, where nature meets luxury. Nestled amidst lush greenery, our gated community features a range of open plots and villas designed to provide you with the perfect blend of tranquility and modern amenities.',
       highlights: [
         'Premium open plots in a gated community',
@@ -63,7 +56,7 @@ const Projects = () => {
       id: 2,
       name: 'Ramky Villa',
       tagline: 'EcoLife Community',
-      image: getImageSrc('villa.JPG'),
+      image: getAssetPath('villa.JPG'),
       description: 'A thoughtfully designed gated villa enclave that brings together luxury living and sustainable lifestyle. Set in a serene, green environment, this community is where your dream of eco-conscious, premium living becomes reality.',
       highlights: [
         'Premium gated villa community on 10 acres',
@@ -92,14 +85,12 @@ const Projects = () => {
         'Eco-certified building materials'
       ]
     },
-
   ];
 
   return (
     <div className="min-h-screen bg-luxury-cream/10">
       <Header />
       <main className="pt-20">
-
         {/* Projects Grid */}
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
@@ -111,6 +102,9 @@ const Projects = () => {
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => {
+                        console.error('Project image failed to load:', project.image);
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                       <div>

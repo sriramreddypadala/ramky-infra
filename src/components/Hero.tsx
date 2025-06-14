@@ -2,16 +2,10 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { getAssetPath } from "@/utils/assetUtils";
 
 function Hero() {
-  const getVideoSrc = () => {
-    // The video file should be in the public folder for proper access
-    // Try the exact filename from your assets
-    if (import.meta.env.DEV) {
-      return "/Dji 0741.mp4"; // Development - served from public folder
-    }
-    return "./Dji 0741.mp4"; // Production - relative to build output
-  };
+  const videoSrc = getAssetPath("Dji 0741.mp4");
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-luxury-navy text-white overflow-hidden">
@@ -24,7 +18,7 @@ function Hero() {
           playsInline
           className="w-full h-full object-cover"
           preload="metadata"
-          onLoadStart={() => console.log('Video loading started')}
+          onLoadStart={() => console.log('Video loading started:', videoSrc)}
           onCanPlay={(e) => {
             console.log('Video can play');
             const video = e.target as HTMLVideoElement;
@@ -33,17 +27,15 @@ function Hero() {
             });
           }}
           onError={(e) => {
-            console.error('Video error occurred');
+            console.error('Video error occurred for:', videoSrc);
             const video = e.target as HTMLVideoElement;
             if (video.error) {
               console.error('Video error code:', video.error.code);
               console.error('Video error message:', video.error.message);
             }
           }}
-          onLoadedData={() => console.log('Video data loaded')}
-          onLoadedMetadata={() => console.log('Video metadata loaded')}
         >
-          <source src={getVideoSrc()} type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
