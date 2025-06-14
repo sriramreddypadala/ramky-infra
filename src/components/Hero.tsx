@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Leaf, ShieldCheck } from "lucide-react";
@@ -5,7 +6,8 @@ import { Link } from "react-router-dom";
 import { getAssetPath } from "@/utils/assetUtils";
 
 function Hero() {
-  const videoSrc = getAssetPath("Dji 0741.mp4");
+  // Use filename without spaces for better compatibility
+  const videoSrc = getAssetPath("Dji-0741.mp4");
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-luxury-navy text-white overflow-hidden">

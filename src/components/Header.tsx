@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,7 +18,8 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const logoSrc = getAssetPath("ramky logo 2.png");
+  // Use filename without spaces for better compatibility
+  const logoSrc = getAssetPath("ramky-logo-2.png");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-sm py-2 transition-all duration-300 hover:bg-background/80 hover:backdrop-blur-md hover:border-b hover:border-luxury-champagne/20">
@@ -33,9 +35,9 @@ const Header = () => {
                 onError={(e) => {
                   console.error('Logo failed to load:', logoSrc);
                   const target = e.target as HTMLImageElement;
-                  // Try fallback without the space in filename
-                  if (!target.src.includes('fallback')) {
-                    target.src = getAssetPath('ramky-logo-2.png');
+                  // Try alternative filename
+                  if (!target.src.includes('ramky_logo')) {
+                    target.src = getAssetPath('ramky_logo_2.png');
                   }
                 }}
               />
@@ -91,7 +93,6 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              {/* Removed mobile get started button */}
             </div>
           </div>
         )}

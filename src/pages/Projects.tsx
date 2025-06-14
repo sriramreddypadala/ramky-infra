@@ -26,7 +26,7 @@ const Projects = () => {
       id: 1,
       name: 'Brindavanam',
       tagline: 'Gated Community with Open Plots & Villas',
-      image: getAssetPath('DJI_0188.JPG'),
+      image: getAssetPath('DJI-0188.JPG'),
       description: 'Welcome to Brindavanam Gated Community, where nature meets luxury. Nestled amidst lush greenery, our gated community features a range of open plots and villas designed to provide you with the perfect blend of tranquility and modern amenities.',
       highlights: [
         'Premium open plots in a gated community',

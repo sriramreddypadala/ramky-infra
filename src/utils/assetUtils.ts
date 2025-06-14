@@ -10,19 +10,13 @@ const getAssetPath = (filename: string): string => {
   
   console.log('Getting asset path for:', cleanFilename);
   console.log('Environment:', import.meta.env.MODE);
+  console.log('Base URL:', import.meta.env.BASE_URL);
   
-  // In development, use absolute paths (served from public folder)
-  if (import.meta.env.DEV) {
-    const devPath = `/${cleanFilename}`;
-    console.log('Dev path:', devPath);
-    return devPath;
-  }
+  // For Netlify and other static hosts, always use absolute paths from root
+  const path = `/${cleanFilename}`;
+  console.log('Asset path:', path);
   
-  // In production, use relative paths (assets are in the same directory as index.html)
-  const prodPath = `./${cleanFilename}`;
-  console.log('Production path:', prodPath);
-  
-  return prodPath;
+  return path;
 };
 
 export { getAssetPath };
